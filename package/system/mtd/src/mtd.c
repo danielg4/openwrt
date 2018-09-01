@@ -44,6 +44,7 @@
 #include <sys/reboot.h>
 #include <linux/reboot.h>
 #include <mtd/mtd-user.h>
+#include "crc32.h"
 #include "fis.h"
 #include "mtd.h"
 
@@ -479,6 +480,7 @@ mtd_write(int imagefd, const char *mtd, char *fis_layout, size_t part_offset)
 #ifdef FIS_SUPPORT
 	static struct fis_part new_parts[MAX_ARGS];
 	static struct fis_part old_parts[MAX_ARGS];
+	struct fis_part *cur_part = NULL;
 	int n_new = 0, n_old = 0;
 
 	if (fis_layout) {
@@ -488,6 +490,8 @@ mtd_write(int imagefd, const char *mtd, char *fis_layout, size_t part_offset)
 
 		memset(&old_parts, 0, sizeof(old_parts));
 		memset(&new_parts, 0, sizeof(new_parts));
+		if (!part_offset)
+			cur_part = new_parts;
 
 		do {
 			next = strchr(tmp, ':');
@@ -591,6 +595,16 @@ resume:
 		if (buflen == 0)
 			break;
 
+#ifdef FIS_SUPPORT
+		if (cur_part && cur_part->size
+		&& cur_part < &new_parts[MAX_ARGS - 1]
+		&& cur_part->length + buflen > cur_part->size)
+			cur_part++;
+		if (cur_part) {
+			cur_part->length += buflen;
+			cur_part->crc = crc32(cur_part->crc, buf, buflen);
+		}
+#endif
 		if (buflen < erasesize) {
 			/* Pad block to eraseblock size */
 			memset(&buf[buflen], 0xff, erasesize - buflen);
