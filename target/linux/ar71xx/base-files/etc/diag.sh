@@ -41,6 +41,9 @@ get_status_led() {
 	ap121f)
 		status_led="$board:green:vpn"
 		;;
+	adtran,bsap1880)
+		status_led="bsap1880:green:status"
+		;;
 	ap132|\
 	ap531b0|\
 	cpe505n|\

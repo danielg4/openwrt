@@ -688,6 +688,9 @@ ar71xx_board_detect() {
 	*"Black Swift board"*)
 		name="bsb"
 		;;
+	*"BSAP-1840")
+		name="adtran,bsap1880"
+		;;
 	*"Bullet M")
 		name="bullet-m"
 		ubnt_xm_board_detect

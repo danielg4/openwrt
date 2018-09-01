@@ -325,6 +325,12 @@ define LegacyDevice/EAP7660D
 endef
 LEGACY_DEVICES += EAP7660D
 
+define LegacyDevice/BSAP1880
+  DEVICE_TITLE := Adtran/Bluesocket BSAP-1800v2 and BSAP-1840
+  DEVICE_PACKAGES := fconfig
+endef
+LEGACY_DEVICES += BSAP1880
+
 define LegacyDevice/JA76PF
   DEVICE_TITLE := jjPlus JA76PF
   DEVICE_PACKAGES := kmod-usb-core kmod-usb-ohci kmod-usb2 kmod-hwmon-core kmod-i2c-core kmod-hwmon-lm75

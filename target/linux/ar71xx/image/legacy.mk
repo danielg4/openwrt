@@ -942,6 +942,7 @@ $(eval $(call SingleProfile,OpenMesh,squashfs-only,MR1750,mr1750,,,,MR1750))
 
 $(eval $(call SingleProfile,PB4X,128k,ALL0305,all0305,ALL0305,ttyS0,115200))
 $(eval $(call SingleProfile,PB4X,128k,EAP7660D,eap7660d,EAP7660D,ttyS0,115200))
+$(eval $(call SingleProfile,PB4X,64k,BSAP1880,bsap1880,BSAP1880,ttyS0,115200))
 $(eval $(call SingleProfile,PB4X,64k,JA76PF,ja76pf,JA76PF,ttyS0,115200))
 $(eval $(call SingleProfile,PB4X,64k,JA76PF2,ja76pf2,JA76PF2,ttyS0,115200))
 $(eval $(call SingleProfile,PB4X,64k,JWAP003,jwap003,JWAP003,ttyS0,115200))

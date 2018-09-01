@@ -375,6 +375,7 @@ platform_check_image() {
 		platform_check_image_allnet "$1" && return 0
 		return 1
 		;;
+	adtran,bsap1880|\
 	all0305|\
 	eap300v2|\
 	eap7660d|\
@@ -812,6 +813,7 @@ platform_do_upgrade() {
 	all0258n)
 		platform_do_upgrade_allnet "0x9f050000" "$ARGV"
 		;;
+	adtran,bsap1880|\
 	all0305|\
 	eap7660d|\
 	ja76pf|\

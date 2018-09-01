@@ -618,6 +618,7 @@ static int __init ath79_setup_phy_if_mode(unsigned int id,
 				mii_if = AR71XX_MII0_CTRL_IF_GMII;
 				break;
 			case PHY_INTERFACE_MODE_RGMII:
+			case PHY_INTERFACE_MODE_RGMII_ID:
 				mii_if = AR71XX_MII0_CTRL_IF_RGMII;
 				break;
 			case PHY_INTERFACE_MODE_RMII:
@@ -1102,6 +1103,7 @@ void __init ath79_register_eth(unsigned int id)
 	switch (pdata->phy_if_mode) {
 	case PHY_INTERFACE_MODE_GMII:
 	case PHY_INTERFACE_MODE_RGMII:
+	case PHY_INTERFACE_MODE_RGMII_ID:
 	case PHY_INTERFACE_MODE_SGMII:
 		if (!pdata->has_gbit) {
 			printk(KERN_ERR "ar71xx: no gbit available on eth%d\n",

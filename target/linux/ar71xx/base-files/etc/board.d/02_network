@@ -59,6 +59,7 @@ ar71xx_setup_interfaces()
 		ucidef_add_switch "switch0" \
 			"0@eth0" "1:lan:4" "2:lan:3" "3:lan:2" "4:lan:1"
 		;;
+	adtran,bsap1880|\
 	alfa-ap120c|\
 	all0305|\
 	antminer-s1|\

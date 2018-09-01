@@ -18,6 +18,10 @@ a60)
 	ucidef_set_led_default "status-red" "Status (red)" "a60:red:status" "0"
 	ucidef_set_led_default "status-blue" "Status (blue)" "a60:blue:status" "0"
 	;;
+adtran,bsap1880)
+	ucidef_set_led_wlan "wlan2g" "WLAN2G" "bsap1880:green:wifi2g" "phy0tpt"
+	ucidef_set_led_wlan "wlan5g" "WLAN5G" "bsap1880:green:wifi5g" "phy1tpt"
+	;;
 airgateway|\
 airgatewaypro)
 	ucidef_set_led_wlan "wlan" "WLAN" "ubnt:blue:wlan" "phy0tpt"

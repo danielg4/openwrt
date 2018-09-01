@@ -58,6 +58,7 @@ enum ath79_mach_type {
 	ATH79_MACH_AW_NR580,			/* AzureWave AW-NR580 */
 	ATH79_MACH_BHR_4GRV2,			/* Buffalo BHR-4GRV2 */
 	ATH79_MACH_BHU_BXU2000N2_A1,		/* BHU BXU2000n-2 A1 */
+	ATH79_MACH_BSAP1880,			/* Bluesocket BSAP-1800v2/BSAP-1840 */
 	ATH79_MACH_BSB,				/* Smart Electronics Black Swift board */
 	ATH79_MACH_C55,				/* AirTight Networks C-55 */
 	ATH79_MACH_C60,				/* AirTight Networks C-60 */
