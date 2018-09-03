@@ -180,6 +180,10 @@ case "$FIRMWARE" in
 	cf-e385ac)
 		ath10kcal_extract "art" 20480 12064
 		;;
+	netgear,ex7300)
+		ath10kcal_extract "caldata" 20480 12064
+		ath10kcal_patch_mac $(mtd_get_mac_binary caldata 12)
+		;;
 	esac
 	;;
 *)

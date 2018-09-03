@@ -743,6 +743,9 @@ ar71xx_board_detect() {
 	*"eTactica EG-200")
 		name="rme-eg200"
 		;;
+	*"EX6400/EX7300")
+		name="netgear,ex7300"
+		;;
 	*"FRITZ!Box 4020")
 		name="fritz4020"
 		;;

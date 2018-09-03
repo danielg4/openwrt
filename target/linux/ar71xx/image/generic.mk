@@ -685,6 +685,19 @@ define Device/wndrmacv2
 endef
 TARGET_DEVICES += wndrmacv2
 
+define Device/ex7300
+  $(Device/wndr3700)
+  DEVICE_TITLE := NETGEAR EX6400 or EX7300
+  DEVICE_PACKAGES := kmod-ath10k ath10k-firmware-qca99x0
+  NETGEAR_BOARD_ID := EX7300series
+  NETGEAR_KERNEL_MAGIC := 0x27051956
+  NETGEAR_HW_ID := 29765104+16+0+128
+  IMAGE_SIZE := 15552k
+  MTDPARTS := spi0.0:256k(u-boot)ro,64k(u-boot-env),64k(caldata)ro,64k(caldata-backup)ro,64k(config),64k(pot),15552k(firmware),256k(language)
+  IMAGES := sysupgrade.bin factory.img
+endef
+TARGET_DEVICES += ex7300
+
 define Device/cap324
   DEVICE_TITLE := PowerCloud Systems CAP324
   BOARDNAME := CAP324

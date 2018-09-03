@@ -124,6 +124,7 @@ enum ath79_mach_type {
 	ATH79_MACH_EW_BALIN,			/* embedded wireless Balin Platform */
 	ATH79_MACH_EW_DORIN,			/* embedded wireless Dorin Platform */
 	ATH79_MACH_EW_DORIN_ROUTER,		/* embedded wireless Dorin Router Platform */
+	ATH79_MACH_EX7300,			/* NETGEAR EX6400/EX7300 */
 	ATH79_MACH_F9K1115V2,			/* Belkin AC1750DB */
 	ATH79_MACH_FRITZ300E,			/* AVM FRITZ!WLAN Repeater 300E */
 	ATH79_MACH_FRITZ4020,			/* AVM FRITZ!Box 4020 */

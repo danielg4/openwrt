@@ -671,6 +671,7 @@ platform_check_image() {
 		alfa_check_image "$1" && return 0
 		return 1
 		;;
+	netgear,ex7300|\
 	wndr3700|\
 	wnr1000-v2|\
 	wnr2000-v3|\

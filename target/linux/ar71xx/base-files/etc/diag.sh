@@ -521,6 +521,7 @@ get_status_led() {
 	wlae-ag300n)
 		status_led="buffalo:green:status"
 		;;
+	netgear,ex7300|\
 	r6100|\
 	wndap360|\
 	wndr3700|\
