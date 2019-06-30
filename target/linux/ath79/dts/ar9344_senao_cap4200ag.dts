@@ -4,8 +4,8 @@
 #include "ar9344_senao_cap4200ag.dtsi"
 
 / {
-	model = "PowerCloud Systems CAP324";
-	compatible = "pcs,cap324", "qca,ar9344";
+	model = "Senao CAP4200AG";
+	compatible = "senao,cap4200ag", "qca,ar9344";
 };
 
 &partitions {
@@ -18,13 +18,23 @@
 	partition@40000 {
 		label = "u-boot-env";
 		reg = <0x040000 0x010000>;
-		read-only;
 	};
 
 	partition@50000 {
+		label = "custom";
+		reg = <0x050000 0x050000>;
+		read-only;
+	};
+
+	partition@a0000 {
 		compatible = "denx,uimage";
 		label = "firmware";
-		reg = <0x050000 0x0fa0000>;
+		reg = <0x0a0000 0xd50000>;
+	};
+
+	partition@df0000 {
+		label = "failsafe";
+		reg = <0xdf0000 0x200000>;
 	};
 
 	art: partition@ff0000 {
@@ -35,9 +45,13 @@
 };
 
 &ath9k {
-	mtd-mac-address-increment = <(-2)>;
+	mtd-mac-address-increment = <(-1)>;
 };
 
 &wmac {
-	mtd-mac-address-increment = <(-1)>;
+	mtd-mac-address-increment = <(-2)>;
+};
+
+&eth0 {
+	mtd-mac-address-increment = <(-2)>;
 };
