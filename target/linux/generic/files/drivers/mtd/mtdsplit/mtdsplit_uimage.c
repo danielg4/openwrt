@@ -9,6 +9,9 @@
 
 #define pr_fmt(fmt)	KBUILD_MODNAME ": " fmt
 
+#include <asm/setup.h>
+#include <linux/ctype.h>
+#include <linux/string.h>
 #include <linux/module.h>
 #include <linux/init.h>
 #include <linux/kernel.h>
@@ -99,6 +102,32 @@ static int __mtdsplit_parse_uimage(struct mtd_info *master,
 	int ret;
 	int extralen;
 	enum mtdsplit_part_type type;
+
+	const char *rarg = of_get_property(mtd_get_of_node(master),
+					"active-if-supplied-root", &ret);
+	if (rarg && ret > 0 && *rarg) {
+		const char *ind;
+
+		for (ind = strnstr
+				(boot_command_line, "root=", COMMAND_LINE_SIZE);
+				ind && ind != boot_command_line
+				&& !isspace(ind[-1]); ind = strnstr
+				(ind + 1, "root=", COMMAND_LINE_SIZE - (ind + 1
+				- boot_command_line)))
+			;
+		if (!ind)
+			return -ENODEV;
+		ind += 5;
+		for (offset = ind - boot_command_line;
+				offset < COMMAND_LINE_SIZE
+				&& boot_command_line[offset]
+				&& !isspace(boot_command_line[offset]);
+				++offset)
+			;
+		offset -= ind - boot_command_line;
+		if (offset != strnlen(rarg, ret) || memcmp(ind, rarg, offset))
+			return -ENODEV;
+	}
 
 	nr_parts = 2;
 	parts = kzalloc(nr_parts * sizeof(*parts), GFP_KERNEL);

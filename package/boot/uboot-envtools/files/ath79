@@ -13,6 +13,8 @@ touch /etc/config/ubootenv
 board=$(board_name)
 
 case "$board" in
+adtran,bsap1920|\
+adtran,bsap1925|\
 alfa-network,ap121f|\
 buffalo,bhr-4grv2|\
 engenius,ecb1750|\

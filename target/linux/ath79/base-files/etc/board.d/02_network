@@ -11,6 +11,8 @@ ath79_setup_interfaces()
 	case "$board" in
 	adtran,bsap1800-v2|\
 	adtran,bsap1840|\
+	adtran,bsap1920|\
+	adtran,bsap1925|\
 	alfa-network,ap121f|\
 	aruba,ap-105|\
 	avm,fritz300e|\

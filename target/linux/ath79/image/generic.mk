@@ -124,6 +124,24 @@ define Device/adtran_bsap1840
 endef
 TARGET_DEVICES += adtran_bsap1840
 
+define Device/adtran_bsap192x
+  ATH_SOC := ar9344
+  DEVICE_VENDOR := Adtran
+  IMAGE_SIZE := 13312k
+endef
+
+define Device/adtran_bsap1920
+  $(Device/adtran_bsap192x)
+  DEVICE_MODEL := Bluesocket BSAP-1920
+endef
+TARGET_DEVICES += adtran_bsap1920
+
+define Device/adtran_bsap1925
+  $(Device/adtran_bsap192x)
+  DEVICE_MODEL := Bluesocket BSAP-1925
+endef
+TARGET_DEVICES += adtran_bsap1925
+
 define Device/alfa-network_ap121f
   ATH_SOC := ar9331
   DEVICE_VENDOR := ALFA Network

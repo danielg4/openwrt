@@ -2,7 +2,11 @@
 # Copyright (C) 2011 OpenWrt.org
 #
 
+. /lib/functions/system.sh
+
 PART_NAME=firmware
+RAMFS_COPY_DATA='/etc/fw_env.config /var/lock/fw_printenv.lock'
+RAMFS_COPY_BIN='nandwrite fw_printenv fw_setenv'
 REQUIRE_IMAGE_METADATA=1
 
 redboot_fis_do_upgrade() {
@@ -43,6 +47,18 @@ platform_do_upgrade() {
 	adtran,bsap1800-v2|\
 	adtran,bsap1840)
 		redboot_fis_do_upgrade "$1" vmlinux_2
+		;;
+	adtran,bsap1920|\
+	adtran,bsap1925)
+		if [ $(grep -ow 'root=31:0[68]' /proc/cmdline) = "root=31:08" ]
+		then
+			PART_NAME=firmware1
+			fw_setenv boot_bank A
+		else
+			PART_NAME=firmware2
+			fw_setenv boot_bank B
+		fi
+		default_do_upgrade "$1"
 		;;
 	jjplus,ja76pf2)
 		redboot_fis_do_upgrade "$1" linux

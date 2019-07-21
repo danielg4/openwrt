@@ -1,0 +1,93 @@
+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+/dts-v1/;
+
+#include "ar9344_senao_cap4200ag.dtsi"
+
+/ {
+	chosen {
+		/delete-property/ bootargs;
+		bootargs-append = "root=";
+	};
+};
+
+&aliases {
+	label-mac-device = &eth0;
+};
+
+&partitions {
+	uboot: partition@0 {
+		label = "u-boot";
+		reg = <0x0000000 0x0040000>;
+		read-only;
+	};
+
+	partition@40000 {
+		label = "u-boot-env";
+		reg = <0x0040000 0x0010000>;
+	};
+
+	partition@50000 {
+		label = "Cert";
+		reg = <0x0050000 0x0040000>;
+	};
+
+	partition@90000 {
+		label = "Kdump";
+		reg = <0x0090000 0x0170000>;
+	};
+
+	partition@200000 {
+		label = "/var";
+		reg = <0x0200000 0x0100000>;
+	};
+
+	partition@300000 {
+		compatible = "denx,uimage";
+		active-if-supplied-root = "31:06";
+		label = "firmware1";
+		reg = <0x0300000 0x0d00000>;
+	};
+
+	partition@1000000 {
+		compatible = "denx,uimage";
+		active-if-supplied-root = "31:08";
+		label = "firmware2";
+		reg = <0x1000000 0x0d00000>;
+	};
+
+	partition@1d00000 {
+		label = "/home";
+		reg = <0x1d00000 0x0100000>;
+	};
+
+	partition@1e00000 {
+		label = "/log";
+		reg = <0x1e00000 0x0180000>;
+	};
+
+	senao: partition@1fe0000 {
+		label = "SENAO";
+		reg = <0x1fe0000 0x0010000>;
+		read-only;
+	};
+
+	art: partition@1ff0000 {
+		label = "art";
+		reg = <0x1ff0000 0x0010000>;
+		read-only;
+	};
+};
+
+&ath9k {
+	mtd-mac-address = <&senao 0x18>;
+	mtd-mac-address-increment = <1>;
+};
+
+&wmac {
+	mtd-mac-address = <&senao 0x18>;
+	mtd-mac-address-increment = <9>;
+};
+
+&eth0 {
+	mtd-mac-address = <&senao 0x18>;
+};
